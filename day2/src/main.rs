@@ -111,7 +111,7 @@ fn main() {
     let mut pos1 = Position1::new();
     let mut pos2 = Position2::new();
     input
-        .split_terminator('\n')
+        .lines()
         .map(|l| l.parse().unwrap())
         .for_each(|cmd| {
             pos1.execute(cmd);
