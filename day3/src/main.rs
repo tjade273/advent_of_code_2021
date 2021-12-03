@@ -10,20 +10,25 @@ fn column_majority(mat: &Vec<Vec<usize>>, col: usize) -> usize {
 }
 
 fn gamma_vec(bits: &Vec<Vec<usize>>) -> Vec<usize> {
-    (0..bits[0].len()).map(|col| column_majority(bits, col)).collect()
+    (0..bits[0].len())
+        .map(|col| column_majority(bits, col))
+        .collect()
 }
 
 fn bits_to_int(bits: &Vec<usize>) -> usize {
     bits.iter().fold(0, |acc, b| (acc << 1) + b)
 }
 
-
 fn gas_rating(_bits: &Vec<Vec<usize>>, negate: bool) -> Vec<usize> {
     let mut bits = _bits.clone();
     let mut col = 0;
     while bits.len() > 1 {
         let maj = column_majority(&bits, col);
-        bits = bits.iter().filter(|r| negate ^ (r[col] == maj)).cloned().collect();
+        bits = bits
+            .iter()
+            .filter(|r| negate ^ (r[col] == maj))
+            .cloned()
+            .collect();
         col += 1
     }
     bits[0].clone()
@@ -54,6 +59,6 @@ mod tests {
     #[test]
     fn test_oxygen_rating() {
         let input = include_str!("test.txt");
-        assert!(bits_to_int(&oxygen_rating(&parse_input(input), false)) == 23)
+        assert!(bits_to_int(&gas_rating(&parse_input(input), false)) == 23)
     }
 }

@@ -110,12 +110,9 @@ fn main() {
     let input = include_str!("input.txt");
     let mut pos1 = Position1::new();
     let mut pos2 = Position2::new();
-    input
-        .lines()
-        .map(|l| l.parse().unwrap())
-        .for_each(|cmd| {
-            pos1.execute(cmd);
-            pos2.execute(cmd)
-        });
+    input.lines().map(|l| l.parse().unwrap()).for_each(|cmd| {
+        pos1.execute(cmd);
+        pos2.execute(cmd)
+    });
     println!("{}, {}", pos1.x * pos1.y, pos2.x * pos2.y);
 }
