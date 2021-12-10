@@ -3,7 +3,7 @@ fn norm_part2(a: i32, b: i32) -> i32 {
     n * (n + 1) / 2
 }
 
-fn total_fuel_part2(crabs: &Vec<i32>, pos: i32) -> i32 {
+fn total_fuel_part2(crabs: &[i32], pos: i32) -> i32 {
     crabs.iter().map(|&crab| norm_part2(crab, pos)).sum()
 }
 
