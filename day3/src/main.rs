@@ -24,11 +24,7 @@ fn gas_rating(_bits: &[Vec<usize>], negate: bool) -> Vec<usize> {
     let mut col = 0;
     while bits.len() > 1 {
         let maj = column_majority(&bits, col);
-        bits = bits
-            .iter()
-            .filter(|r| negate ^ (r[col] == maj))
-            .cloned()
-            .collect();
+        bits.retain(|r| negate ^ (r[col] == maj));
         col += 1
     }
     bits[0].clone()
